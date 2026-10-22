@@ -4,6 +4,8 @@ _Or in other words, Cherry's resume! :>_
 
 :cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom::cherry_blossom:
 
+<br>
+
 ## GENERIC RESUME LINK
 
 ```
@@ -12,7 +14,7 @@ https://cherryyypham.github.io/resume/resume.pdf
 
 `resume.pdf` is a fallback copy of the variant marked `default: true`. Every push to `main` rebuilds it at the same URL, so the link never goes stale.
 
----
+<br>
 
 ## "Automatically" Tailoring Resume!
 
@@ -93,7 +95,7 @@ resume spills over it repeatedly takes the globally lowest-scoring line and:
 recompiling each time until it fits. Only once content cuts are exhausted does it
 tighten the layout (11pt -> 10pt, reduced itemsep) and try again. Every cut is reported and headers/title fields stay the same. CI additionally fails the build if any PDF is not exactly one page.
 
----
+<br>
 
 ## Local setup
 
