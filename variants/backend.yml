@@ -1,0 +1,7 @@
+# Backend / Platform Engineer
+variant_name: "Backend Engineer"
+filename: "backend"
+role: backend
+keywords: [rest api, fastapi, python, postgresql, docker, system design, distributed systems, sql, api design]
+max_bullets_per_role: 3
+max_projects: 2

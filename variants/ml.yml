@@ -1,0 +1,7 @@
+# ML Engineer - training, evaluation, pipelines
+variant_name: "ML Engineer"
+filename: "ml"
+role: ml
+keywords: [pytorch, training, evaluation, benchmarking, machine learning, data pipeline, python, scikit-learn]
+max_bullets_per_role: 3
+max_projects: 2

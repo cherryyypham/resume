@@ -1,0 +1,7 @@
+# DevOps / Infrastructure Engineer
+variant_name: "DevOps Engineer"
+filename: "devops"
+role: devops
+keywords: [docker, kubernetes, terraform, aws, ci/cd, cloud, containerization, deployment]
+max_bullets_per_role: 3
+max_projects: 2

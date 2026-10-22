@@ -1,0 +1,7 @@
+# Data Engineer
+variant_name: "Data Engineer"
+filename: "data"
+role: data
+keywords: [etl, data pipeline, sql, postgresql, python, data modeling, time-series, spark]
+max_bullets_per_role: 3
+max_projects: 2

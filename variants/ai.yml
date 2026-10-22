@@ -1,0 +1,8 @@
+# AI / LLM Engineer - the default resume handed out at dist/resume.pdf
+variant_name: "AI Engineer"
+filename: "ai"
+default: true
+role: ai
+keywords: [pytorch, llm, fine-tuning, rag, hugging face, langchain, nlp, inference, transformers]
+max_bullets_per_role: 3
+max_projects: 2

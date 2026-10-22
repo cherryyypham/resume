@@ -1,0 +1,509 @@
+# base_content.yml - everything everywhere all at once cherry resume, ever growing and evolving.
+
+# Each bullet carries:
+#   text      [NOT NULL] final LaTeX-escaped sentence
+#   short     tighter phrasing; the packer falls back to this before
+#             dropping the bullet entirely
+#   tags      role buckets this bullet speaks to (ai, ml, backend, data, ...)
+#   keywords  concrete tech/skill tokens, lowercase, matched against --keywords
+#             and against text extracted from a job description via --jd
+#   weight    manual thumb on the scale, -3..+5. Use +3..+5 for "this line goes
+#             on every resume", negative to bury something without deleting it.
+
+personal:
+  name: "Khue (Cherry) Pham"
+  location: "Boston, MA"
+  email: "khuee.phamj@gmail.com"
+  linkedin: "linkedin.com/in/cherryyypham"
+  github: "github.com/cherryyypham"
+  phone: "+1 (781) 492-8935"
+  contact_fields: [location, linkedin, github, email]
+
+# Optional role-targeted summaries. The one whose key matches --role is used;
+# omitted entirely if no match or if --no-summary is passed. Costs ~4 lines.
+summaries:
+  ai: >-
+    AI/ML Engineer with experience building and deploying large language models, RAG
+    pipelines, and low-latency inference systems. Ships production ML end-to-end --
+    from data pipelines and model training through REST API deployment and cloud
+    infrastructure.
+
+# ═══════════════════════════════════════════════════════════════════════════
+# EDUCATION - always rendered; coursework lines are droppable under pressure.
+# ═══════════════════════════════════════════════════════════════════════════
+education:
+  - id: neu
+    heading: "Northeastern University, The Roux Institute -- M.S. Computer Science"
+    dates: "Dec 2027"
+    weight: 5
+    lines:
+      - id: neu_coursework
+        text: "Relevant Coursework: Programming Design Paradigms; Machine Learning; Database Management Systems"
+        tags: [ai, ml, backend, data]
+        keywords: [machine learning, databases, sql, algorithms]
+        weight: 1
+      - id: neu_coursework_ml
+        text: "Relevant Coursework: Programming Design Paradigms; Machine Learning; Unsupervised Machine Learning"
+        tags: [ai, ml, research]
+        keywords: [machine learning, unsupervised learning]
+        weight: 0
+
+  - id: olin
+    heading: "Olin College of Engineering -- B.S. Electrical and Computer Engineering"
+    dates: "May 2025"
+    weight: 5
+    lines:
+      - id: olin_coursework
+        text: "Relevant Coursework: Advanced Algorithms; Software Systems; Software Design; Data Structures and Algorithms; Neurotechnology; Computer Architecture; Modeling and Simulation; Analog/Digital Communication"
+        short: "Relevant Coursework: Advanced Algorithms; Software Systems; Software Design; Data Structures and Algorithms; Computer Architecture"
+        tags: [backend, systems, ml, swe]
+        keywords: [algorithms, data structures, software design, computer architecture, systems]
+        weight: 1
+
+# ═══════════════════════════════════════════════════════════════════════════
+# EXPERIENCE
+# ═══════════════════════════════════════════════════════════════════════════
+experience:
+  - id: fcrr
+    company: "Florida Center for Reading Research"
+    location: "Remote"
+    title: "Machine Learning Engineer"
+    dates: "Sep 2024 -- Aug 2025"
+    tags: [ai, ml, backend, data, research]
+    weight: 5
+    bullets:
+      - id: fcrr_llm
+        text: "Built a PyTorch/LangChain pipeline and fine-tuned a LLaMA-based LLM on early literacy corpora, evaluating prompting and fine-tuning variants against rubric-aligned benchmarks to select version for cross-state pilot deployment."
+        short: "Built a PyTorch/LangChain pipeline and fine-tuned a LLaMA-based LLM on early literacy corpora, evaluating prompting and fine-tuning variants against rubric-aligned benchmarks."
+        tags: [ai, ml, research]
+        keywords: [pytorch, langchain, llm, llama, fine-tuning, nlp, benchmarking, prompt engineering, hugging face]
+        weight: 5
+      - id: fcrr_datamodel
+        text: "Designed a hybrid SQL/NoSQL data model from an ERD, using relational storage for interconnected student, teacher, parent, classroom, and game data and document storage for variable per-game metrics; deployed on Red Hat OpenShift with OAuth 2.0 and role-based access control."
+        short: "Designed a hybrid SQL/NoSQL data model from an ERD and deployed it on Red Hat OpenShift with OAuth 2.0 and role-based access control."
+        tags: [backend, data, devops]
+        keywords: [sql, nosql, postgresql, data modeling, erd, openshift, kubernetes, oauth, rbac, cloud]
+        weight: 3
+      - id: fcrr_rag
+        text: "Built RAG pipelines with pgvector-backed semantic search (PostgreSQL), improving retrieval accuracy by 15--25\\% on children's reading development tasks; evaluated using BLEU/ROUGE benchmarks."
+        tags: [ai, ml, backend]
+        keywords: [rag, pgvector, semantic search, postgresql, retrieval, embeddings, bleu, rouge, vector database, nlp]
+        weight: 4
+      - id: fcrr_restapi
+        text: "Deployed LLM inference behind a REST API endpoint serving an education portal, with scalable cloud infrastructure supporting SQL/NoSQL storage and OAuth-based authentication for multi-user research access."
+        tags: [ai, backend, devops]
+        keywords: [rest api, inference, deployment, cloud, oauth, aws, scalability, mlops]
+        weight: 3
+      - id: fcrr_stakeholder
+        text: "Coordinated between the engineering team and non-technical stakeholders by creating meeting agendas, translating session notes into concrete tasks, and managing delivery timelines."
+        tags: [leadership, research]
+        keywords: [stakeholder management, agile, communication, project management, cross-functional]
+        weight: 1
+      - id: fcrr_domain_experts
+        text: "Spearheaded a domain-expert integration strategy, identifying and onboarding subject matter experts to fill critical research gaps and accelerate model development cycles."
+        tags: [leadership, research]
+        keywords: [research, cross-functional, leadership]
+        weight: 0
+
+  - id: air_partners
+    company: "Air Partners"
+    location: "Needham, MA"
+    title: "Data Engineer"
+    dates: "Jun 2023 -- Aug 2023"
+    tags: [data, backend, ml, research]
+    weight: 4
+    bullets:
+      - id: ap_etl
+        text: "Designed a normalized data model and modular ETL pipeline to integrate time-series data from 18 disparate IoT sensors into an analysis-ready dataset, processing $\\approx$3 million records across 2 years of hourly readings; reduced pipeline latency by 30\\% through parallelized processing and optimized API batching."
+        short: "Designed a normalized data model and modular ETL pipeline integrating time-series data from 18 IoT sensors ($\\approx$3M records); cut pipeline latency 30\\% via parallelization and optimized API batching."
+        tags: [data, backend]
+        keywords: [etl, data pipeline, time-series, data modeling, python, parallelization, api, iot, latency, optimization]
+        weight: 5
+      - id: ap_reproducible
+        text: "Consolidated scattered Python and R scripts into a reproducible R workflow with documentation, enabling non-technical team members to modify and rerun the pipeline independently."
+        tags: [data, research, leadership]
+        keywords: [python, r, reproducibility, documentation, tooling]
+        weight: 2
+      - id: ap_viz
+        text: "Prepared 4 data visualizations translating atmospheric sensor data into actionable insights supporting environmental justice litigation by the Roxbury community group."
+        tags: [data, research]
+        keywords: [data visualization, r, analytics, reporting]
+        weight: 2
+
+  - id: living_lab
+    company: "Olin College -- College as a Living Lab"
+    location: "Needham, MA"
+    title: "AI Pedagogy Researcher"
+    dates: "Jun 2025 -- Aug 2025"
+    tags: [ai, ml, research]
+    weight: 2
+    bullets:
+      - id: ll_grading
+        text: "Designed and deployed a GPT-4o-based automated grading pipeline integrated with the Canvas LMS API, processing 500--1,000 student submissions per semester with tokenization and semantic similarity analysis."
+        tags: [ai, ml, backend]
+        keywords: [gpt-4, llm, openai, api integration, nlp, semantic similarity, tokenization, python, hugging face]
+        weight: 3
+      - id: ll_eval
+        text: "Evaluated prompting strategies across 4--6 model iterations against professor-graded rubrics, reaching 80--87\\% alignment with human graders through iterative prompt design and layer-specific fine-tuning."
+        tags: [ai, ml, research]
+        keywords: [prompt engineering, evaluation, fine-tuning, llm, benchmarking, a/b testing]
+        weight: 3
+      - id: ll_policy
+        text: "Led institutional research into emerging AI tools to synthesize evidence-based policy recommendations for responsible LLM integration across college curricula and operations."
+        tags: [research, leadership]
+        keywords: [research, ai policy, llm]
+        weight: 0
+
+  - id: edu_research
+    company: "Olin College -- EduResearch Lab"
+    location: "Needham, MA"
+    title: "Pedagogy Researcher"
+    dates: "Sep 2023 -- May 2025"
+    tags: [research, data]
+    weight: 1
+    bullets:
+      - id: er_papers
+        text: "Co-authored and co-presented 2 peer-reviewed papers at Frontiers in Education (FIE), a top-ranked engineering education conference, contributing original empirical findings to the learning sciences literature."
+        tags: [research]
+        keywords: [publication, peer review, research, presentation]
+        weight: 2
+      - id: er_etl
+        text: "Built Python ETL pipelines to clean, process, and visualize survey and performance data from 1,300+ student responses, producing publication-ready statistical figures."
+        tags: [data, research, ml]
+        keywords: [python, etl, data pipeline, statistics, data visualization, pandas]
+        weight: 2
+      - id: er_methods
+        text: "Co-designed mixed-methods research studies investigating game-based learning's effects on student motivation, engagement, and academic performance grounded in Motivation Theories."
+        tags: [research]
+        keywords: [research, study design, mixed methods]
+        weight: 0
+
+  - id: bioinformatics
+    company: "Olin College -- Microbial Bioinformatics Research Team"
+    location: "Needham, MA"
+    title: "Bioinformatics Researcher"
+    dates: "Sep 2024 -- May 2025"
+    tags: [research, data, systems]
+    weight: 0
+    bullets:
+      - id: bio_genomics
+        text: "Automated extraction of genomic scaffolding data from the Joint Genome Institute to identify gene clusters associated with polyethylene-degrading microbes."
+        tags: [data, research]
+        keywords: [python, automation, data extraction, bioinformatics]
+        weight: 1
+      - id: bio_comparative
+        text: "Performed comparative genomic analysis to model metabolic co-dependencies within microbial systems by modifying open-source gene alignment programs in C and Python."
+        tags: [research, systems]
+        keywords: [c, python, open source, algorithms, bioinformatics]
+        weight: 1
+
+  - id: olin_it
+    company: "Olin College IT Department"
+    location: "Needham, MA"
+    title: "IT Technician"
+    dates: "Oct 2021 -- May 2025"
+    tags: [devops, systems]
+    weight: -1
+    bullets:
+      - id: it_support
+        text: "Resolved up to 10 client support requests per shift at an average of 3 work orders per hour, troubleshooting issues across Windows 10/11 and Linux environments including OS reinstalls, driver conflicts, and network connectivity."
+        tags: [devops, systems]
+        keywords: [linux, windows, troubleshooting, networking, it support]
+        weight: 0
+      - id: it_lifecycle
+        text: "Managed device lifecycle tasks including imaging and deploying workstations, configuring user accounts, and maintaining inventory records for campus-owned hardware and peripherals."
+        tags: [devops, systems]
+        keywords: [linux, windows, imaging, intune, deployment, it support]
+        weight: -1
+      - id: it_hardware
+        text: "Diagnosed and repaired physical hardware failures for Dell computers and escalated complex infrastructure issues to senior staff with thorough documentation."
+        tags: [systems]
+        keywords: [hardware, troubleshooting, documentation]
+        weight: -2
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PROJECTS
+# ═══════════════════════════════════════════════════════════════════════════
+projects:
+  - id: encom
+    name: "ENCoM -- Real-Time Generative Speech-to-Speech System"
+    link_url: "https://github.com/ShubhamGajjar/ENCOM"
+    link_label: "GitHub"
+    date: ""
+    tags: [ai, ml, research, systems]
+    weight: 5
+    bullets:
+      - id: encom_speedup
+        text: "Designed and ran experiments comparing a Mimi+Mamba hybrid architecture against a controlled cascaded baseline, achieving 2.79x inference speedup while maintaining audio quality (MOS) on Switchboard/Expresso evaluation sets."
+        tags: [ai, ml, research]
+        keywords: [mamba, ssm, inference, benchmarking, speech, audio, evaluation, pytorch, optimization, latency]
+        weight: 5
+      - id: encom_ablation
+        text: "Conducted ablation studies on architecture variants, measuring perplexity for same-condition comparisons and automated speech-quality scoring via Whisper transcription for cross-condition evaluation."
+        tags: [ai, ml, research]
+        keywords: [ablation, perplexity, whisper, evaluation, speech, nlp, benchmarking]
+        weight: 4
+      - id: encom_pipeline
+        text: "Engineered a low-latency pipeline integrating the Mimi neural audio codec with a Mamba SSM backbone and Temporal/Depth Transformer, reducing time-to-first-audio to $<$300ms."
+        tags: [ai, ml, systems]
+        keywords: [neural audio codec, mamba, ssm, transformer, latency, inference, real-time, pytorch]
+        weight: 4
+      - id: encom_adapter
+        text: "Trained a Cross-Modal Adapter to align Mimi audio latent spaces with a pretrained SmolLM2-360M language model, preserving $>$95\\% of reasoning capabilities while minimizing VRAM footprint for edge deployment."
+        tags: [ai, ml]
+        keywords: [multimodal, adapter, llm, quantization, edge deployment, vram, pytorch, fine-tuning]
+        weight: 4
+      - id: encom_sota
+        text: "Benchmarked end-to-end performance against SOTA cascaded pipelines (Whisper/GPT/Kokoro), delivering a 3x improvement in RTFx and significantly higher barge-in recovery precision."
+        tags: [ai, ml, research]
+        keywords: [benchmarking, whisper, gpt, evaluation, speech, latency]
+        weight: 3
+      - id: encom_paralinguistic
+        text: "Optimized paralinguistic modeling by training a custom generator on the Switchboard-1 dataset to detect and respond to non-verbal cues, improving conversational naturalness scores in A/B testing."
+        tags: [ai, ml, research]
+        keywords: [training, dataset, speech, a/b testing, nlp]
+        weight: 1
+
+  - id: next_step
+    name: "Next-Step -- Full-Stack School Management Platform"
+    link_url: "https://github.com/Fresnel-Fabian/Next-Step-Frontend"
+    link_label: "GitHub"
+    date: ""
+    tags: [backend, fullstack, devops, frontend]
+    weight: 4
+    bullets:
+      - id: ns_api
+        text: "Designed a cross-platform REST API with role-based access control for 3 user roles using async Python (FastAPI, SQLAlchemy 2.0)."
+        short: "Designed a cross-platform REST API with role-based access control for 3 user roles using FastAPI and SQLAlchemy."
+        tags: [backend, fullstack]
+        keywords: [rest api, fastapi, sqlalchemy, python, async, rbac, api design, backend]
+        weight: 5
+      - id: ns_oauth
+        text: "Integrated Google Drive API and OAuth 2.0 authentication pipeline enabling secure file storage, permission management, and real-time data synchronization across iOS, Android, and Web clients."
+        short: "Integrated Google Drive API and OAuth 2.0 authentication enabling secure file storage and real-time sync across iOS, Android, and Web clients."
+        tags: [backend, fullstack, frontend]
+        keywords: [oauth, api integration, authentication, google api, mobile, sync, security]
+        weight: 4
+      - id: ns_docker
+        text: "Containerized with Docker and deployed via multi-worker uvicorn, validated at 100 concurrent users with 7,801 requests served, zero errors, and 95\\% of responses under 200ms."
+        short: "Containerized with Docker and deployed via multi-worker uvicorn; load-tested at 100 concurrent users with zero errors and p95 under 200ms."
+        tags: [backend, devops, fullstack]
+        keywords: [docker, containerization, uvicorn, load testing, scalability, deployment, performance, devops]
+        weight: 4
+      - id: ns_advisor
+        text: "Acted as technical bridge between non-technical school officials and the engineering team, translating product requirements into scope and cutting stakeholder workflow time by 50\\%."
+        tags: [leadership, fullstack]
+        keywords: [stakeholder management, product, requirements, cross-functional]
+        weight: 1
+
+  - id: grading
+    name: "AI-Powered Automated Grading System"
+    link_url: ""
+    link_label: ""
+    date: "Olin College -- College as a Living Lab"
+    tags: [ai, ml]
+    weight: 2
+    bullets:
+      - id: grading_pipeline
+        text: "Integrated a GPT-4o-based automated grading pipeline into Canvas to address slow, inconsistent feedback in a self-guided intro course, processing 500 student submissions per semester."
+        tags: [ai, ml, backend]
+        keywords: [gpt-4, llm, openai, api integration, python, nlp]
+        weight: 3
+      - id: grading_eval
+        text: "Evaluated prompting strategies across 4--6 iterations against professor-graded rubrics, reaching 80--87\\% alignment."
+        tags: [ai, ml]
+        keywords: [prompt engineering, evaluation, benchmarking, llm]
+        weight: 3
+
+  - id: chat_werc
+    name: "Chat We-RC -- Multithreaded Chat Server"
+    link_url: "https://github.com/cherryyypham"
+    link_label: "GitHub"
+    date: "2023"
+    tags: [systems, backend]
+    weight: 2
+    bullets:
+      - id: werc_sockets
+        text: "Implemented socket programming in C for a server-client system enabling multidirectional chat and user-information tracking, using pthreads for concurrent communication among multiple clients."
+        tags: [systems, backend]
+        keywords: [c, sockets, concurrency, threads, networking, systems programming, distributed systems]
+        weight: 3
+      - id: werc_tests
+        text: "Wrote comprehensive unit tests alongside detailed documentation and clean software architecture."
+        tags: [systems, backend]
+        keywords: [unit testing, pytest, documentation, software design]
+        weight: 1
+
+  - id: pca_dsp
+    name: "Principal Component Analysis for Digital Signal Processing"
+    link_url: "https://github.com/cherryyypham"
+    link_label: "GitHub"
+    date: ""
+    tags: [ml, systems, research]
+    weight: 1
+    bullets:
+      - id: pca_system
+        text: "Implemented a system for signal denoising, modulation recognition, and feature extraction using PCA for multi-channel signals."
+        tags: [ml, systems]
+        keywords: [pca, signal processing, feature extraction, numpy, python, dimensionality reduction]
+        weight: 2
+      - id: pca_validation
+        text: "Used Python for feature extraction and cross-validation to improve adaptability in signal-processing tasks."
+        tags: [ml]
+        keywords: [python, cross-validation, scikit-learn, feature engineering]
+        weight: 1
+
+  - id: semg
+    name: "sEMG Rock Paper Scissors Prediction"
+    link_url: "https://github.com/cherryyypham"
+    link_label: "GitHub"
+    date: ""
+    tags: [ml, systems]
+    weight: 1
+    bullets:
+      - id: semg_system
+        text: "Built a rock-paper-scissors gesture prediction system driven by a wearable surface electromyography (sEMG) sensor."
+        tags: [ml, systems]
+        keywords: [signal processing, classification, embedded, sensors, matlab]
+        weight: 2
+      - id: semg_classifier
+        text: "Implemented a classification tool employing feature extraction and k-fold cross-validation in MATLAB."
+        tags: [ml]
+        keywords: [matlab, classification, cross-validation, feature engineering, machine learning]
+        weight: 1
+
+  - id: raytracer
+    name: "ACRaytracing -- C++ Ray Tracer"
+    link_url: "https://github.com/cherryyypham"
+    link_label: "GitHub"
+    date: "2023"
+    tags: [systems]
+    weight: 0
+    bullets:
+      - id: ray_render
+        text: "Built a rendering program in C++ that dynamically generates spherical shapes with varying materials, radii, and centers."
+        tags: [systems]
+        keywords: [c++, graphics, rendering, systems programming, algorithms]
+        weight: 1
+
+  - id: brailldle
+    name: "Brailldle -- Refreshable Braille Display"
+    link_url: "https://devpost.com"
+    link_label: "Devpost"
+    date: ""
+    tags: [systems, ml]
+    weight: 0
+    bullets:
+      - id: brailldle_cv
+        text: "Programmed OpenCV text recognition and Arduino firmware for servo control of a refreshable braille display; 1st place, MakeMIT 2022."
+        tags: [systems, ml]
+        keywords: [opencv, computer vision, arduino, embedded, firmware, c++, hackathon]
+        weight: 2
+
+  - id: concept_map
+    name: "Linear Algebra Concept Map for Canvas"
+    link_url: "https://github.com/cherryyypham"
+    link_label: "GitHub"
+    date: ""
+    tags: [frontend, fullstack]
+    weight: 0
+    bullets:
+      - id: cm_graph
+        text: "Dynamically fetched per-student data from the Canvas API and generated a force-directed graph that adapts to content load."
+        tags: [frontend, fullstack]
+        keywords: [javascript, d3, data visualization, api integration, react, frontend]
+        weight: 2
+
+# ═══════════════════════════════════════════════════════════════════════════
+# PUBLICATIONS - section only renders when it scores in and there is room.
+# ═══════════════════════════════════════════════════════════════════════════
+publications:
+  - id: pub_fie
+    text: "Co-authored and co-presented 2 peer-reviewed papers at \\textbf{Frontiers in Education (FIE)}, a top-ranked engineering education conference, on game-based learning's effects on student motivation and academic performance."
+    tags: [research]
+    keywords: [publication, peer review, conference, research]
+    weight: 2
+  - id: pub_methods
+    text: "Conducted mixed-methods empirical research with Python ETL pipelines processing 1,300+ student survey responses, producing publication-ready statistical figures."
+    tags: [research, data]
+    keywords: [python, etl, statistics, research, data visualization]
+    weight: 1
+
+# ═══════════════════════════════════════════════════════════════════════════
+# EXTRAS - lowest priority, only lands if the page is otherwise short.
+# ═══════════════════════════════════════════════════════════════════════════
+extras_label: "Other Skills and Interests"
+extras:
+  - id: extra_media
+    label: "Digital Media"
+    text: "Filmmaking and editing, Photography"
+    tags: [frontend]
+    keywords: []
+    weight: -2
+  - id: extra_community
+    label: "Community"
+    text: "Financial Manager, Olin South Asian Student Association; Tax Preparer, VITA 2023; English Instructor, Ba Muoi Charity Classroom"
+    tags: [leadership]
+    keywords: []
+    weight: -2
+
+# ═══════════════════════════════════════════════════════════════════════════
+# SKILLS - pool per section. Variants pick subset + order by score.
+# `always: true` pins a skill into its section regardless of score.
+# ═══════════════════════════════════════════════════════════════════════════
+skills:
+  languages:
+    label: "Languages"
+    items:
+      - {name: "Python",     tags: [ai, ml, backend, data, research], keywords: [python], weight: 5, always: true}
+      - {name: "R",          tags: [data, research],          keywords: [r, statistics], weight: 1}
+      - {name: "JavaScript (React, JSON)", tags: [frontend, fullstack], keywords: [javascript, react, typescript, node, frontend], weight: 2}
+      - {name: "Rust",       tags: [systems, backend],        keywords: [rust], weight: 1}
+      - {name: "Swift",      tags: [frontend, systems],       keywords: [swift, ios, mobile], weight: 0}
+      - {name: "C",          tags: [systems],                 keywords: [c, systems programming, embedded], weight: 1}
+      - {name: "C++",        tags: [systems, ml],             keywords: [c++, systems programming], weight: 1}
+      - {name: "MATLAB",     tags: [ml, research, systems],   keywords: [matlab, signal processing], weight: 0}
+      - {name: "Java",       tags: [backend],                 keywords: [java], weight: 1}
+      - {name: "Go",         tags: [backend, devops],         keywords: [go, golang], weight: 1}
+      - {name: "SQL",        tags: [backend, data],           keywords: [sql, postgresql, databases], weight: 3}
+
+  software:
+    label: "Software Engineering"
+    items:
+      - {name: "Distributed Systems", tags: [backend, systems], keywords: [distributed systems, scalability, concurrency], weight: 3}
+      - {name: "System Design",   tags: [backend, systems],  keywords: [system design, architecture], weight: 3}
+      - {name: "REST APIs",       tags: [backend, fullstack],keywords: [rest api, api design, http], weight: 4}
+      - {name: "FastAPI",         tags: [backend],           keywords: [fastapi, python, async], weight: 3}
+      - {name: "SQLAlchemy",      tags: [backend],           keywords: [sqlalchemy, orm, python], weight: 1}
+      - {name: "PostgreSQL",      tags: [backend, data],     keywords: [postgresql, postgres, sql, databases], weight: 3}
+      - {name: "ETL data pipelines", tags: [data, ml],       keywords: [etl, data pipeline, airflow, spark], weight: 3}
+      - {name: "Docker",          tags: [devops, backend],   keywords: [docker, containerization, containers], weight: 4}
+      - {name: "Kubernetes",      tags: [devops],            keywords: [kubernetes, k8s, openshift, orchestration], weight: 2}
+      - {name: "Terraform",       tags: [devops],            keywords: [terraform, infrastructure as code, iac], weight: 2}
+      - {name: "AWS",             tags: [devops, backend],   keywords: [aws, cloud, ec2, s3, lambda], weight: 4}
+      - {name: "CI/CD",           tags: [devops, backend],   keywords: [ci/cd, github actions, jenkins, continuous integration], weight: 3}
+      - {name: "Git",             tags: [backend, devops, swe], keywords: [git, github, version control], weight: 2, always: true}
+      - {name: "Pytest",          tags: [backend, swe],      keywords: [pytest, unit testing, testing, tdd], weight: 2}
+      - {name: "Agile/SDLC",      tags: [backend, leadership], keywords: [agile, scrum, sdlc], weight: 1}
+
+  ml:
+    label: "ML/AI"
+    items:
+      - {name: "PyTorch",        tags: [ai, ml],     keywords: [pytorch, deep learning, training], weight: 5, always: true}
+      - {name: "Hugging Face Transformers", tags: [ai, ml], keywords: [hugging face, transformers, nlp, llm], weight: 5}
+      - {name: "LangChain",      tags: [ai],         keywords: [langchain, llm, agents, rag], weight: 4}
+      - {name: "LLMs",           tags: [ai, ml],     keywords: [llm, large language models, gpt, foundation models], weight: 5}
+      - {name: "Fine-tuning",    tags: [ai, ml],     keywords: [fine-tuning, finetuning, lora, peft, training], weight: 5}
+      - {name: "RAG",            tags: [ai],         keywords: [rag, retrieval, retrieval augmented generation], weight: 4}
+      - {name: "semantic search",tags: [ai, backend],keywords: [semantic search, embeddings, vector search], weight: 3}
+      - {name: "pgvector",       tags: [ai, backend],keywords: [pgvector, vector database, embeddings, postgresql], weight: 2}
+      - {name: "LLaMA",          tags: [ai, ml],     keywords: [llama, open models, meta], weight: 3}
+      - {name: "Mamba SSM",      tags: [ai, ml, research], keywords: [mamba, ssm, state space model, architecture], weight: 2}
+      - {name: "Quantization",   tags: [ai, ml, systems],  keywords: [quantization, inference optimization, edge, onnx], weight: 3}
+      - {name: "ONNX",           tags: [ai, systems],keywords: [onnx, inference, deployment, mlops], weight: 2}
+      - {name: "TensorFlow",     tags: [ml],         keywords: [tensorflow, keras, deep learning], weight: 1}
+      - {name: "scikit-learn",   tags: [ml, data],   keywords: [scikit-learn, sklearn, classification, machine learning], weight: 2}
+      - {name: "NLP",            tags: [ai, ml],     keywords: [nlp, natural language processing, text], weight: 4}
+      - {name: "Prompt Engineering", tags: [ai],     keywords: [prompt engineering, prompting, llm], weight: 3}
+      - {name: "Neural Audio Codecs", tags: [ai, research], keywords: [audio, speech, codec, multimodal], weight: 1}
+      - {name: "Computer Vision", tags: [ml],        keywords: [computer vision, opencv, cv, image], weight: 1}

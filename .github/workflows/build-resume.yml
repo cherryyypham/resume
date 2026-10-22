@@ -1,0 +1,79 @@
+name: Build & Deploy Resume
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "resume/**"
+      - "variants/**"
+      - "scripts/**"
+      - ".github/workflows/build-resume.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: resume-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build resume variants
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install LaTeX
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y --no-install-recommends \
+            texlive-latex-base \
+            texlive-latex-recommended \
+            texlive-latex-extra \
+            texlive-fonts-recommended \
+            lmodern \
+            poppler-utils
+
+      - name: Build all variants
+        run: python scripts/build.py --all --output dist/
+
+      - name: Enforce one page
+        run: |
+          fail=0
+          for pdf in dist/*.pdf; do
+            pages=$(pdfinfo "$pdf" | awk '/^Pages:/ {print $2}')
+            echo "$pdf - $pages page(s)"
+            if [ "$pages" -ne 1 ]; then
+              echo "::error file=$pdf::$pdf is $pages pages"
+              fail=1
+            fi
+          done
+          exit $fail
+
+      - name: Generate landing page
+        run: python scripts/generate_index.py --dist dist/
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: resume-pdfs
+          path: dist/*.pdf
+          retention-days: 30
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: dist/
+          publish_branch: gh-pages
+          keep_files: true
+          commit_message: "deploy: ${{ github.sha }}"

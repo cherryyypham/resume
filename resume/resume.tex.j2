@@ -1,0 +1,185 @@
+%% ============================================================
+%% Jinja2 template with non-LaTeX delimiters (see make_jinja_env in build.py).
+%% NEVER write a Jinja delimiter inside a comment here - Jinja parses comments
+%% too, and an unmatched one breaks every build.
+%% Build with: python scripts/build.py --role ai
+%% ============================================================
+\documentclass[<< layout.fontsize >>pt, letterpaper]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{microtype}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{<< layout.topmargin >>in}
+\addtolength{\textheight}{<< layout.textheight >>in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\newcommand{\resumeItem}[1]{
+  \item\small{#1 \vspace{-2pt}}
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textbf{\small#3} & \small #4 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubheadingTwo}[2]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}, parsep=<< layout.parsep >>pt]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}[leftmargin=0.15in, itemsep=<< layout.itemsep >>pt, topsep=<< layout.topsep >>pt, parsep=0pt]}
+\newcommand{\resumeItemListStartTwo}{\begin{itemize}[leftmargin=0in, label={}, itemsep=<< layout.itemsep >>pt, topsep=<< layout.topsep >>pt, parsep=0pt]}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    \textbf{\Huge \scshape << personal.name >>} \\ \vspace{4pt}
+    \small
+    << personal.contact_line >>
+\end{center}
+
+<% if summary %>
+%-----------SUMMARY-----------
+\section{Summary}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt]
+  \small{\item{<< summary >>}}
+\end{itemize}
+<% endif %>
+
+<% if education %>
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+<% for edu in education %>
+  \resumeSubheadingTwo
+    {<< edu.heading >>}{<< edu.dates >>}
+<% if edu.lines %>
+    \resumeItemListStartTwo
+<% for line in edu.lines %>
+      \resumeItem{<< line >>}
+<% endfor %>
+    \resumeItemListEnd
+<% endif %>
+<% endfor %>
+\resumeSubHeadingListEnd
+<% endif %>
+
+<% if skills %>
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt]
+    \small{
+<% for section in skills %>
+      \item \textbf{<< section.label >>:} << section['items'] | join(', ') >>
+<% endfor %>
+    }
+\end{itemize}
+<% endif %>
+
+<% if experience %>
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+<% for role in experience %>
+  \resumeSubheading
+    {<< role.company >>}{<< role.location >>}
+    {<< role.title >>}{<< role.dates >>}
+    \resumeItemListStart
+<% for bullet in role['bullets'] %>
+      \resumeItem{<< bullet >>}
+<% endfor %>
+    \resumeItemListEnd
+<% endfor %>
+\resumeSubHeadingListEnd
+<% endif %>
+
+<% if projects %>
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+<% for project in projects %>
+  \resumeProjectHeading
+    {\textbf{<< project.name >>}<% if project.link_url %> $|$ \href{<< project.link_url >>}{<< project.link_label >>}<% endif %>}{<< project.date >>}
+    \resumeItemListStart
+<% for bullet in project['bullets'] %>
+      \resumeItem{<< bullet >>}
+<% endfor %>
+    \resumeItemListEnd
+<% endfor %>
+\resumeSubHeadingListEnd
+<% endif %>
+
+<% if publications %>
+%-----------PUBLICATIONS-----------
+\section{Publications \& Research}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=2pt]
+  \small{
+<% for pub in publications %>
+    \item << pub >>
+<% endfor %>
+  }
+\end{itemize}
+<% endif %>
+
+<% if extras %>
+%-----------OTHER-----------
+\section{<< extras_label >>}
+\begin{itemize}[leftmargin=0.15in, label={}, itemsep=0pt]
+  \small{
+<% for item in extras %>
+    \item \textbf{<< item.label >>:} << item.text >>
+<% endfor %>
+  }
+\end{itemize}
+<% endif %>
+
+\end{document}

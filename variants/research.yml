@@ -1,0 +1,8 @@
+# Research Engineer / PhD-adjacent roles
+variant_name: "Research Engineer"
+filename: "research"
+role: research
+keywords: [research, publication, evaluation, benchmarking, ablation, experiments, pytorch]
+max_bullets_per_role: 3
+max_projects: 2
+section_floor: 2.0
