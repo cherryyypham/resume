@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Khue (Cherry) Pham - Résumé</title>
+<meta name="description" content="Résumé of Khue (Cherry) Pham." />
+<style>
+  :root {
+    --bg: #fbfbfa; --fg: #1a1a18; --muted: #6b6b66;
+    --line: #e4e4e0; --card: #ffffff; --accent: #1a1a18;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141413; --fg: #eeeeec; --muted: #9a9a94;
+      --line: #2c2c29; --card: #1d1d1b; --accent: #eeeeec;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--fg);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, sans-serif;
+    display: flex; align-items: center; justify-content: center;
+    min-height: 100vh; padding: 2rem 1.25rem;
+  }
+  main { width: 100%; max-width: 620px; }
+  h1 { font-size: 1.9rem; letter-spacing: -0.02em; margin-bottom: 0.3rem; }
+  .meta { color: var(--muted); font-size: 0.93rem; margin-bottom: 0.4rem; }
+  .links { font-size: 0.93rem; margin-bottom: 2rem; }
+  .links a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .links a:hover { color: var(--fg); }
+  .links span { color: var(--line); margin: 0 0.5rem; }
+  .primary {
+    display: block; text-align: center; background: var(--accent);
+    color: var(--bg); text-decoration: none; padding: 0.9rem 1rem;
+    border-radius: 9px; font-weight: 600; margin-bottom: 2.25rem;
+  }
+  .primary:hover { opacity: 0.88; }
+  h2 {
+    font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.09em;
+    color: var(--muted); font-weight: 600; margin-bottom: 0.85rem;
+  }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 0.6rem; }
+  .card {
+    display: flex; align-items: center; gap: 0.6rem;
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: 9px; padding: 0.8rem 0.9rem;
+    text-decoration: none; color: var(--fg); font-size: 0.93rem;
+  }
+  .card:hover { border-color: var(--muted); }
+  .icon { color: var(--muted); }
+  footer { margin-top: 2.5rem; color: var(--muted); font-size: 0.82rem; }
+</style>
+</head>
+<body>
+  <main>
+    <h1>Khue (Cherry) Pham</h1>
+    <p class="meta">Boston, MA</p>
+    <p class="links">
+      <a href="mailto:khuee.phamj@gmail.com">khuee.phamj@gmail.com</a><span>·</span>
+      <a href="https://github.com/cherryyypham">GitHub</a><span>·</span>
+      <a href="https://linkedin.com/in/cherryyypham">LinkedIn</a>
+    </p>
+    <a class="primary" href="resume.pdf">Download résumé (PDF)</a>
+    <h2>Tailored versions</h2>
+    <div class="grid">
+      <a class="card" href="resume_ai.pdf"><span class="icon">◆</span><span class="label">AI Engineer</span></a>
+      <a class="card" href="resume_backend.pdf"><span class="icon">▣</span><span class="label">Backend Engineer</span></a>
+      <a class="card" href="resume_data.pdf"><span class="icon">▤</span><span class="label">Data Engineer</span></a>
+      <a class="card" href="resume_devops.pdf"><span class="icon">▦</span><span class="label">DevOps Engineer</span></a>
+      <a class="card" href="resume_ml.pdf"><span class="icon">◇</span><span class="label">ML Engineer</span></a>
+      <a class="card" href="resume_research.pdf"><span class="icon">◉</span><span class="label">Research Engineer</span></a>
+    </div>
+    <footer>Built from source on October 22, 2026.</footer>
+  </main>
+</body>
+</html>
